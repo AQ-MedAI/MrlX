@@ -6,7 +6,7 @@ To address the challenge of enabling large-scale models to reason, act, and lear
 
 
 <div align="center">
-    <img src="./figs/framework.svg" alt="MrlX Framework" width="600">
+    <img src="/figs/framework.svg" alt="MrlX Framework" width="600">
 </div>
 
 ## Core Architecture
@@ -26,7 +26,7 @@ Drawing upon this multi-agent coordinated training framework, we have implemente
 [Project Link: MrlX-TakesTwo](MrlX-TakesTwo/README.md)
 
 <div align="center">
-    <img src="./MrlX-TakesTwo/img/flowchart.svg" width="600">
+    <img src="/MrlX-TakesTwo/img/flowchart.svg" width="600">
 </div>
 
 ### Overview
@@ -47,8 +47,8 @@ In the context of clinical diagnosis, where effective patient interviewing is pi
 As illustrated by the reward curves below, the joint training methodology produces significant improvements for both agents compared to the clinician-only baseline. This highlights the value of co-evolving patient simulators to achieve superior diagnostic interviewing capabilities in LLMs.
 
 <div align="center">
-    <img src="./MrlX-TakesTwo/img/doc_raw_reward.png" width="310">
-    <img src="./MrlX-TakesTwo/img/patient_raw_reward.png" width="310">
+    <img src="/MrlX-TakesTwo/img/doc_raw_reward.png" width="310">
+    <img src="/MrlX-TakesTwo/img/patient_raw_reward.png" width="310">
 </div>
 
 ### General Observation
@@ -62,7 +62,7 @@ Building on this finding, we next explore a domain with distinct challenges—co
 [Project Link: MrlX-DeepResearch](MrlX-DeepResearch/README_QUICKSTART.md)
 
 <div align="center">
-    <img src="./figs/MrlX-DeepResearch_framework.svg" width="600">
+    <img src="/figs/MrlX-DeepResearch_framework.svg" width="600">
 </div>
 
 ### Overview
@@ -83,8 +83,8 @@ The results demonstrate that our multi-agent setup with distinct, specialized LL
 
 As the single-agent baseline configuration slightly difffers from the multi-agent setup, the initial rewards are inconsistent. More rigorous ablation study will be presented in the following paper.
 <div align="center">
-    <img src="./figs/MrlX-DeepResearch_reward_session1.png" width="310">
-    <img src="./figs/MrlX-DeepResearch_reward_session2.png" width="310">
+    <img src="/figs/MrlX-DeepResearch_reward_session1.png" width="310">
+    <img src="/figs/MrlX-DeepResearch_reward_session2.png" width="310">
 </div>
 
 ---
