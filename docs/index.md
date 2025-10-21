@@ -23,7 +23,7 @@ Drawing upon this multi-agent coordinated training framework, we have implemente
 
 ## Case Study: itTakesTwo (Doctor-Patient Co-Training)
 
-[Project Link: MrlX-TakesTwo](../MrlX-TakesTwo/README.md)
+[Project Link: MrlX-TakesTwo](https://github.com/AQ-MedAI/MrlX/blob/main/MrlX-TakesTwo/README.md)
 
 <div align="center">
     <img src="./figs/flowchart.svg" width="600">
@@ -59,7 +59,7 @@ Building on this finding, we next explore a domain with distinct challenges—co
 
 ## Case Study: DeepResearch
 
-[Project Link: MrlX-DeepResearch](../MrlX-DeepResearch/README_QUICKSTART.md)
+[Project Link: MrlX-DeepResearch](https://github.com/AQ-MedAI/MrlX/blob/main/MrlX-DeepResearch/README_QUICKSTART.md)
 
 <div align="center">
     <img src="./figs/MrlX-DeepResearch_framework.svg" width="600">
@@ -97,3 +97,15 @@ Looking forward, MrlX will be extended to more diverse multi-agent ecosystems be
 ## Acknowledgements
 
 - Special thanks to the following projects & communities: slime, SGLang, Megatron-LM, and others.
+
+## Citation
+
+```bibtex
+@misc{mrlx2025,
+  title = {MrlX: A Multi-Agent Reinforcement Learning Framework},
+  author = {AQ Team},
+  year = {2025},
+  publisher={GitHub},
+  howpublished = {\url{https://github.com/AQ-MedAI/MrlX}},
+}
+```
