@@ -1,0 +1,5 @@
+Task: {task}
+
+context: {context}
+
+Now begin your research!

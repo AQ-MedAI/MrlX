@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Load general environment variables
+INIT_ENV_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$INIT_ENV_DIR/init_general_env.sh"
+
+# Tool Server specific configuration
+export TOOL_SERVER_HOST=${TOOL_SERVER_HOST:-0.0.0.0}
+export TOOL_SERVER_PORT=${TOOL_SERVER_PORT:-50001}
+export MAX_CONCURRENT_REQUESTS=${MAX_CONCURRENT_REQUESTS:-2000}
+export REQUEST_TIMEOUT=${REQUEST_TIMEOUT:-180}
+export VISIT_SEMAPHORE_LIMIT=${VISIT_SEMAPHORE_LIMIT:-200}
+export SEARCH_SEMAPHORE_LIMIT=${SEARCH_SEMAPHORE_LIMIT:-500}
+
+# API Keys
+export GOOGLE_SEARCH_KEY=${GOOGLE_SEARCH_KEY}
+export JINA_API_KEY=${JINA_API_KEY}
+
+# Tool Server LLM Configuration
+export TOOL_SERVER_LLM_API_KEY=${TOOL_SERVER_LLM_API_KEY}
+export TOOL_SERVER_LLM_BASE_URL=${TOOL_SERVER_LLM_BASE_URL:-https://openrouter.ai/api/v1}
+export TOOL_SERVER_LLM_MODEL=${TOOL_SERVER_LLM_MODEL:-deepseek/deepseek-chat-v3-0324}
+
+# Optional Settings
+export WEBCONTENT_MAXLENGTH=${WEBCONTENT_MAXLENGTH:-150000}
+export SEARCH_MAX_QUERIES=${SEARCH_MAX_QUERIES:-3}
+
+echo "Tool Server environment variables set"
+echo "  - TOOL_SERVER_HOST: $TOOL_SERVER_HOST"
+echo "  - TOOL_SERVER_PORT: $TOOL_SERVER_PORT"
+echo "  - TOOL_SERVER_LLM_MODEL: $TOOL_SERVER_LLM_MODEL"

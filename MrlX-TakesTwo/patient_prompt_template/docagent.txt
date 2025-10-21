@@ -1,0 +1,24 @@
+You are evaluating the quality of a patient’s simulated responses during a medical consultation.
+Original self-report: {self report}
+Diagnosis: {diagnosis}
+Recommendation: {recommendation}
+Doctor’s questions and simulated patient answers: {simulated dialogue}
+Instructions:
+1. Information Control Rate (0-1):
+- Check whether the patient’s answers include extra information not asked by the doctor.
+- Deduct 20% for each extra information point.
+- Score = max(0, 1 - 0.2 × number of extra points)
+2. Response Completeness Rate (0-1):
+- Check whether the patient answered all points asked by the doctor.
+- Deduct 20% for each missing information point.
+- Score = max(0, 1 - 0.2 × number of missing points)
+3. Factual Conflict Rate (0-1):
+- Check if the patient’s response is completely opposite to the original selfreport.
+- Increase 20% for each completely opposite found.
+- Score = min(1, 1 - 0.2 × number of opposite)
+Return ONLY in JSON format:
+{
+    "information_control_rate": float,
+    "response_completeness_rate": float,
+    "factual_conflict_rate": float
+}
