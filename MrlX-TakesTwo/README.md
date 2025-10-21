@@ -9,12 +9,12 @@ In this repository, we demonstrate a workflow using Qwen3-8B as the patient mode
 - Doctor worker: Responsible for conducting multi-turn dialogue simulation by calling the patient model tool and updating the doctor model itself.
 - Patient worker: Responsible for updating the patient model and running the database service and SGLang Router service for the doctor worker to store and simulate dialogues. The patient model is updated off-policy using samples stored in the database.
 
-<img src="img/flowchart.svg" alt="flowchart" width="600">
+<img src="../docs/figs/flowchart.svg" alt="flowchart" width="600">
 
 We used the data and doctor/patient reward definitions from [DoctorAgent-RL](https://github.com/JarvisUSTC/DoctorAgent-RL). During training, we observed that through interaction with a fixed patient model, the co-trained doctor model's reward increased significantly, while the patient reward also rose synchronously during the training process. See below for reproducing this training.
 
-<img src="img/doc_raw_reward.png" alt="doc reward" width="300">
-<img src="img/patient_raw_reward.png" alt="patient reward" width="300">
+<img src="../docs/figs/doc_raw_reward.png" alt="doc reward" width="300">
+<img src="../docs/figs/patient_raw_reward.png" alt="patient reward" width="300">
 
 ## Prerequisite
 

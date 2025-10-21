@@ -26,7 +26,7 @@ Drawing upon this multi-agent coordinated training framework, we have implemente
 [Project Link: MrlX-TakesTwo](MrlX-TakesTwo/README.md)
 
 <div align="center">
-    <img src="../MrlX-TakesTwo/img/flowchart.svg" width="600">
+    <img src="./figs/flowchart.svg" width="600">
 </div>
 
 ### Overview
@@ -47,8 +47,8 @@ In the context of clinical diagnosis, where effective patient interviewing is pi
 As illustrated by the reward curves below, the joint training methodology produces significant improvements for both agents compared to the clinician-only baseline. This highlights the value of co-evolving patient simulators to achieve superior diagnostic interviewing capabilities in LLMs.
 
 <div align="center">
-    <img src="../MrlX-TakesTwo/img/doc_raw_reward.png" width="310">
-    <img src="../MrlX-TakesTwo/img/patient_raw_reward.png" width="310">
+    <img src="./figs/doc_raw_reward.png" width="310">
+    <img src="./figs/patient_raw_reward.png" width="310">
 </div>
 
 ### General Observation
