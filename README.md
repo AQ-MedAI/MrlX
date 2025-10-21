@@ -19,7 +19,7 @@ Training data flows from the Data Buffer into Megatron, where updated weights ar
 ## Architecture-Overview
 
 <div align="center">
-    <img src="./figs/framework.svg" alt="framework" width="600">
+    <img src="./docs/figs/framework.svg" alt="framework" width="600">
 </div>
 
 **Module Description**

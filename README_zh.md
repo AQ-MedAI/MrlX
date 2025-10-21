@@ -19,7 +19,7 @@
 ## 架构总览
 
 <div align="center">
-    <img src="./figs/framework.svg" alt="framework" width="600">
+    <img src="./docs/figs/framework.svg" alt="framework" width="600">
 </div>
 
 
