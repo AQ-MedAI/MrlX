@@ -39,8 +39,7 @@ In the context of clinical diagnosis, where effective patient interviewing is pi
 - **Qwen3-8B** → patient agent  
 - **Qwen3-32B** → doctor agent  
 - **GRPO** updates both agents across multi-turn consultations  
-- **DeepSeek-R1** → scores empathy/adherence for patient updates  
-- **DoctorAgent-RL** → tracks diagnostic accuracy for clinician responses  
+- **DeepSeek-R1** → scores empathy/adherence for patient updates   
 
 ### Results
 
