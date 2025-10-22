@@ -36,10 +36,11 @@ In the context of clinical diagnosis, where effective patient interviewing is pi
 
 ### Implementation Details
 
-- **Qwen3-8B** → patient agent  
-- **Qwen3-32B** → doctor agent  
-- **GRPO** updates both agents across multi-turn consultations  
-- **DeepSeek-R1** → scores empathy/adherence for patient updates   
+For this demo, we adopt data and reward definitions from [DoctorAgent-RL](https://github.com/JarvisUSTC/DoctorAgent-RL).
+
+- **Qwen3-8B** → as the patient agent, scored by DeepSeek-R1 across three dimensions: information control, response completeness, and factual conflict
+- **Qwen3-32B** → as the doctor agent, trained with rule-based rewards for information gathering capability, format compliance, and diagnostic accuracy
+- Both models are trained via **GRPO**, note that the patient agent uses off-policy training
 
 ### Results
 
@@ -51,7 +52,7 @@ As illustrated by the reward curves below, the joint training methodology produc
 </div>
 
 ### General Observation
-Results from the doctor-patient co-training show that mutual asynchronous evolution of the participating interactive agents yields measurable gains over single-agent training.  
+Results from the doctor-patient co-training show that mutual asynchronous evolution of the participating interactive agents yields measurable gains over single-agent training.
 Building on this finding, we next explore a domain with distinct challenges—context-length explosion and frequent multi-tool usage—addressed through MrlX's multi-agent research pipeline.
 
 ---
@@ -89,7 +90,7 @@ As the single-agent baseline configuration slightly difffers from the multi-agen
 ---
 
 ## Summary & Outlook
-The case studies confirm that asynchronous co-evolution of specialized LLM agents delivers measurable gains in stability, convergence speed, and task performance over single-agent approaches.  
+The case studies confirm that asynchronous co-evolution of specialized LLM agents delivers measurable gains in stability, convergence speed, and task performance over single-agent approaches.
 Looking forward, MrlX will be extended to more diverse multi-agent ecosystems beyond LLMs, and adapted for real-time dynamic environments with potential self-organizing role allocation mechanisms.
 
 
