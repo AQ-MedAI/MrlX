@@ -16,7 +16,7 @@ export TRAIN_MODE=${TRAIN_MODE:-"local"}
 
 # Set environment variables based on TRAIN_MODE
 if [ "$TRAIN_MODE" = "local" ]; then
-   export RAY_ADDRESS="127.0.0.1:8286"
+   export RAY_ADDRESS="127.0.0.1:8265"
 else
    if [ -z "$RAY_ADDRESS" ]; then echo "Error: RAY_ADDRESS environment variable is not set" && exit 1; fi
 fi

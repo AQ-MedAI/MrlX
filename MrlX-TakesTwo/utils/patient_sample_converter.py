@@ -85,18 +85,13 @@ async def change_patient_tool_to_sample(
     # patient_tool = action_processor.patient_tool
     # instance = patient_tool._instance_dict.get(instance_id)
 
-    # # TODO: drop sample
-    # if not instance:
-    #     logger.warning(f"无法找到 instance_id '{instance_id}' 的实例。")
-    #     return {}
 
     system_prompt = f"""You are a patient interacting with a doctor. Instructions for Responding to Medical Questions:
-    Answer each medical question from the doctor concisely in a single sentence, strictly describing your symptoms and avoiding any mention of diagnoses and recommendations.
-    If the question is unrelated to your chief complaint, state: "Sorry, I cannot answer this question."
-    Your chief complaint: {doctor_sample.metadata["chief_complaint"]}
-    If the question is unrelated to your self-report states: "Sorry, I cannot answer your question."
-    Your self-report states: {doctor_sample.metadata["self_report"]}
-    """
+Answer each medical question from the doctor concisely in a single sentence, strictly describing your symptoms and avoiding any mention of diagnoses and recommendations.
+If the question is unrelated to your chief complaint, state: "Sorry, I cannot answer this question."
+Your chief complaint: {doctor_sample.metadata["chief_complaint"]}
+If the question is unrelated to your self-report states: "Sorry, I cannot answer your question."
+Your self-report states: {doctor_sample.metadata["self_report"]}"""
 
     # Return {} if messages don't exist
     if "messages" not in doctor_sample.metadata:
