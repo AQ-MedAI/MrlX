@@ -23,8 +23,6 @@ from slime.rollout.sglang_rollout import GenerateState
 from slime.utils.http_utils import post
 from slime.utils.types import Sample
 
-from config import global_config
-
 # Load grader template from txt file
 _template_path = Path(__file__).parent / "grader_template.txt"
 with open(_template_path, "r", encoding="utf-8") as f:
@@ -53,6 +51,7 @@ class SGLangClient:
         payload = {
             "text": prompt,
             "sampling_params": sampling_params,
+            "return_logprob": True,
         }
         return await post(url, payload)
 
@@ -129,20 +128,23 @@ def parse_json_to_dict(json_string: str) -> dict:
         # Keep only the markdown-style json block if present
         match = re.search(r"```json\s*([\s\S]*?)\s*```", json_string.strip())
         if match:
-            json_string = match.group(1)
+            matched_json_string = match.group(1)
         else:
-            json_string = json_string.strip()
+            matched_json_string = json_string.strip()
 
         # Remove markdown-style ```json``` markers if present
-        json_cleaned = re.sub(r"^```json\s*|\s*```$", "", json_string)
+        json_cleaned = re.sub(r"^```json\s*|\s*```$", "", matched_json_string)
     except AttributeError:
-        print(f"JSON extraction failed: {json_string}")
         return {}
 
     try:
-        return json.loads(json_cleaned)
+        result = json.loads(json_cleaned)
+        if isinstance(result, dict):
+            return result
+        else:
+            return {}
     except json.JSONDecodeError as e:
-        print(f"JSON decoding failed {e}: {json_cleaned}")
+        print(f"JSON decoding failed {e}: {json_string}")
         # Match key fields directly to avoid JSON string quote escaping issues
         result = {}
 
@@ -187,16 +189,18 @@ async def reward_func(args, sample, **kwargs):
     rubrics = sample.metadata.get("rubrics", [])
     messages = sample.metadata.get("messages", [])
     conversation = ""
+    state = GenerateState(args)
     for message in messages:
         conversation += f"{message['role']}: {message['content']}\n"
 
     llm_client = SGLangClient()
 
     grading_sampling_params = dict(
-        temperature=1.0,
+        temperature=0.6,
         top_p=0.95,
         top_k=20,
         max_new_tokens=16384,
+        frequency_penalty=0.2,
     )
 
     # Pre-calculate possible positive score and prepare all prompts
@@ -211,10 +215,25 @@ async def reward_func(args, sample, **kwargs):
     async def grade_rubric(rubric: dict) -> tuple[int, bool]:
         """Grade a single rubric criterion and return (points, met)."""
         grader_prompt = base_grader_prompt.replace("<<rubric_item>>", rubric["criterion"])
-        result = await llm_client.generate_response(
-            grader_prompt, grading_sampling_params, args
+        grader_prompt = state.tokenizer.apply_chat_template(
+            [{"role": "user", "content": grader_prompt}],
+            add_generation_prompt=True,
+            tokenize=False,
         )
-        criterion_met = extract_grader_output(result["text"])
+        # Retry logic: attempt up to 3 times if criterion_met is None
+        criterion_met = None
+        max_retries = 3
+        for attempt in range(max_retries):
+            result = await llm_client.generate_response(
+                grader_prompt, grading_sampling_params, args
+            )
+            print(result["text"])
+            if "<|im_end|>" in result["text"]:
+                result["text"] = result["text"].split("<|im_end|>")[0].strip()
+            criterion_met = extract_grader_output(result["text"])
+            if criterion_met is not None:
+                break
+
         return rubric["points"], bool(criterion_met)
 
     # Execute all grading tasks concurrently
