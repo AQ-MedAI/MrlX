@@ -47,24 +47,24 @@ case "$run_type" in
     HOST_IP=$(hostname -i | awk '{print $1}')
     echo "Detected host IP: $HOST_IP"
 
-    # Start Router service in the background and log output
-    cd "$SLIME_DIR/examples/med_co_train"
-    bash start_router.sh 2>&1 | tee "$LOG_DIR/${KEY_SUFFIX}_router.log" &
+    # # Start Router service in the background and log output
+    # cd "$SLIME_DIR/examples/MrlX-TakesTwo"
+    # bash start_router.sh 2>&1 | tee "$LOG_DIR/${KEY_SUFFIX}_router.log" &
 
-    # Wait until Router is ready (port 3333)
-    until nc -z "$HOST_IP" 3333; do
-      echo "Waiting for Router service to start..."
-      sleep 1
-    done
+    # # Wait until Router is ready (port 3333)
+    # until nc -z "$HOST_IP" 3333; do
+    #   echo "Waiting for Router service to start..."
+    #   sleep 1
+    # done
 
-    # Start Database service in the background and log output
-    bash start_database_server.sh 2>&1 | tee "$LOG_DIR/${KEY_SUFFIX}_database_server.log" &
+    # # Start Database service in the background and log output
+    # bash start_database_server.sh 2>&1 | tee "$LOG_DIR/${KEY_SUFFIX}_database_server.log" &
 
-    # Wait until Database is ready (port 5432)
-    until nc -z "$HOST_IP" 18888; do
-      echo "Waiting for Database service to start..."
-      sleep 1
-    done
+    # # Wait until Database is ready (port 5432)
+    # until nc -z "$HOST_IP" 18888; do
+    #   echo "Waiting for Database service to start..."
+    #   sleep 1
+    # done
 
     # Return to main project directory
     cd "$SLIME_DIR"

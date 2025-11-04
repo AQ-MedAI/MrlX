@@ -26,12 +26,16 @@ DIST_CKPT_PATH=${DIST_CKPT_PATH:-""}
 SAVE_PATH=${SAVE_PATH:-""}
 PROMPT_DATA_PATH=${PROMPT_DATA_PATH:-""}
 
+GLOBAL_BATCH_SIZE=${GLOBAL_BATCH_SIZE:-256}
+ROLLOUT_BATCH_SIZE=$((GLOBAL_BATCH_SIZE / 8))
+NUM_ROLLOUT=$((55 * 1024 / GLOBAL_BATCH_SIZE))
+
 CKPT_ARGS=(
    --hf-checkpoint "$HF_CKPT_PATH"
    --ref-load "$DIST_CKPT_PATH"
    --load "$SAVE_PATH"
    --save "$SAVE_PATH"
-   --save-interval 44
+   --save-interval $((11 * 1024 / GLOBAL_BATCH_SIZE))
 )
 
 ROLLOUT_ARGS=(
@@ -39,15 +43,14 @@ ROLLOUT_ARGS=(
    --prompt-data "$PROMPT_DATA_PATH"
    --input-key prompt
    --metadata-key extra_info
-   --apply-chat-template
    --rollout-shuffle
-   --num-rollout 220
-   --rollout-batch-size 32
+   --num-rollout $NUM_ROLLOUT
+   --rollout-batch-size $ROLLOUT_BATCH_SIZE
    --n-samples-per-prompt 8
    --rollout-max-response-len 8192
    --rollout-temperature 1.0
 
-   --global-batch-size 256
+   --global-batch-size $GLOBAL_BATCH_SIZE
    --balance-data
 )
 
@@ -135,7 +138,10 @@ RUNTIME_ENV_JSON="{
     \"KEY_SUFFIX\": \"${KEY_SUFFIX}\",
     \"PATIENT_IP\": \"${PATIENT_IP}\",
     \"DEEPSEEK_R1_BASE_URL\": \"${DEEPSEEK_R1_BASE_URL}\",
-    \"DEEPSEEK_R1_API_KEY\": \"${DEEPSEEK_R1_API_KEY}\"
+    \"DEEPSEEK_R1_API_KEY\": \"${DEEPSEEK_R1_API_KEY}\",
+    \"DATABASE_SERVER_IP\": \"${DATABASE_SERVER_IP}\",
+    \"PATIENT_TOKENIZER_PATH\": \"${PATIENT_TOKENIZER_PATH}\",
+    \"DATABASE_SERVER_IP\": \"${DATABASE_SERVER_IP}\"
   }
 }"
 
