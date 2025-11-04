@@ -51,6 +51,8 @@ Submit job to both ray cluster.
 ```bash
 cd $SLIME_DIR/examples/MrlX-TakesTwo
 
+# You may start router/db server in patient worker, as shown in `run.sh`
+
 export DATABASE_SERVER_IP=""
 export PATIENT_IP=""
 export RAY_ADDRESS="" # Dashboard address of the patient or doctor cluster
