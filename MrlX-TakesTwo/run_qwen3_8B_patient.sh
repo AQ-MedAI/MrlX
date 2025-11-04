@@ -78,7 +78,7 @@ GRPO_ARGS=(
    --kl-loss-coef 0.00
    --kl-loss-type low_var_kl
    --kl-coef 0.00
-   --entropy-coef 0.00
+   --entropy-coef 0.001
    --eps-clip 0.2
    --eps-clip-high 0.28
    --calculate-per-token-loss
