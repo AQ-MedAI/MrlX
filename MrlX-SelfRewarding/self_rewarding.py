@@ -1,15 +1,3 @@
-"""
-Module: doctor_multiturn
-------------------------
-Handles multi-turn conversation generation for the doctor role in the
-doctor-patient simulation, using SGLang-based LLM client.
-
-Functions:
-    multi_turn_generate(...) -> Sample
-    generate(...) -> Sample
-    reward_func(...) -> float
-"""
-
 import logging
 from math import e
 from typing import Any, Dict, Callable
