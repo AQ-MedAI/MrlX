@@ -41,4 +41,4 @@ See [MrlX-DeepResearch](MrlX-DeepResearch/README_QUICKSTART.md)
 
 ## Acknowledgements
 
-- Special thanks to the following projects & communities: slime, SGLang, Megatron-LM, and others.
+- Special thanks to the following projects & communities: slime, Miles, SGLang, Megatron-LM, and others.
